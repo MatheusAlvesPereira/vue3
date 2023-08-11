@@ -28,9 +28,7 @@ export default {
         .then(response => response.json())
         .then(data => {
           this.tasks = data;
-        })
-        
-        .then((json) => console.log(json));
+        });
     },
     addTask() {
       if (this.newTask.trim() === "") return;
@@ -51,8 +49,8 @@ export default {
         .then(data => {
           this.tasks.push(data);
           this.newTask = "";
-        })
-        .then((json) => console.log(json));
+          console.log(data); // Coloque o console.log dentro deste bloco
+        });
     },
     deleteTask(taskId) {
       fetch(`https://jsonplaceholder.typicode.com/todos/${taskId}`, {
@@ -61,7 +59,9 @@ export default {
         this.tasks = this.tasks.filter(task => task.id !== taskId);
       });
     }
+  },
+  mounted() {
+    this.fetchTasks();
   }
-}
+};
 </script>
-
