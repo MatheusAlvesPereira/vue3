@@ -13,51 +13,52 @@
 </template>
 
 <script>
-  import { ref } from 'vue';
+import { ref, onMounted } from 'vue';
 
-  export default {
-    name: 'TaskList',
-    setup() {
-      const newTask = ref('');
-      const tasks = ref([]);
+export default {
+  name: 'TaskList',
+  setup() {
+    const newTask = ref('');
+    const tasks = ref([]);
 
-      const addTask = () => {
-        if (newTask.value.trim() === '') return;
+    const addTask = () => {
+      if (newTask.value.trim() === '') return;
 
-        const taskToAdd = {
-          userId: 1,
-          title: newTask.value,
-          completed: false
-        };
-
-        fetch('https://jsonplaceholder.typicode.com/todos', {
-          method: 'POST',
-          body: JSON.stringify(taskToAdd),
-          headers: {
-            'Content-Type': 'application/json'
-          }
-        })
-          .then(response => response.json())
-          .then(data => {
-            tasks.value.push(data);
-            newTask.value = '';
-          });
+      const taskToAdd = {
+        userId: 1,
+        title: newTask.value,
+        completed: false
       };
 
-      const deleteTask = taskId => {
-        (`https://jsonplaceholder.typicode.com/todos/${taskId}`, {
-          method: 'DELETE'
-        }).then(() => {
+      fetch('https://jsonplaceholder.typicode.com/todos', {
+        method: 'POST',
+        body: JSON.stringify(taskToAdd),
+        headers: {
+          'Content-Type': 'application/json'
+        }
+      })
+        .then(response => response.json())
+        .then(data => {
+          tasks.value.push(data);
+          newTask.value = '';
+        });
+    };
+
+    const deleteTask = taskId => {
+      fetch(`https://jsonplaceholder.typicode.com/todos/${taskId}`, {
+        method: 'DELETE'
+      })
+        .then(() => {
           tasks.value = tasks.value.filter(task => task.id !== taskId);
         });
-      };
+    };
 
-      return {
-        newTask,
-        tasks,
-        addTask,
-        deleteTask
-      };
-    }
-  };
+    return {
+      newTask,
+      tasks,
+      addTask,
+      deleteTask
+    };
+  }
+};
 </script>
