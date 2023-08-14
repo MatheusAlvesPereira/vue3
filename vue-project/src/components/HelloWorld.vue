@@ -43,7 +43,7 @@ export default {
         .then(data => {
           this.tasks.push(data);
           this.newTask = "";
-          console.log(data); // Coloque o console.log dentro deste bloco
+          console.log(data);
         });
     };
 
