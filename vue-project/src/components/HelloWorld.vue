@@ -1,56 +1,37 @@
 <template>
-  <div id="app">
-    <h1>Lista de Tarefas</h1>
-    <div>
-      <input v-model="newTask" placeholder="Digite uma nova tarefa">
-      <button @click="addTask">Criar Tarefa</button>
-      <ul>
-        <li v-for="task in tasks" :key="task.id">
-          {{ task.title }}
-          <button @click="deleteTask(task.id)">Deletar</button>
-        </li>
-      </ul>
-    </div>
+  <div>
+    <a href="#/listadetarefas">lista de tarefas</a> |
+    <a href="#/">Home</a> |
+    <a href="#/about">About</a> |
+    <a href="#/contact">Contact</a> |
+    <a href="#/non-existent-path">Broken Link</a>
+    <component :is="currentView" />
   </div>
 </template>
 
 <script setup>
-import { ref } from 'vue';
+import { ref , computed } from 'vue';
+import Home from './home.vue';
+import About from './About.vue';
+import Contact from './Contact.vue';
+import Listadetarefas from './TaskComponent.vue';
+import BrokenLink from './BrokenLink.vue';
 
-const newTask = ref('');
-const tasks = ref([]);
-
-const addTask = () => {
-  if (newTask.value.trim() === '') return;
-
-  const taskToAdd = {
-    userId: 1,
-    title: newTask.value,
-    completed: false
-  };
-
-  fetch('https://jsonplaceholder.typicode.com/todos', {
-    method: 'POST',
-    body: JSON.stringify(taskToAdd),
-    headers: {
-      'Content-Type': 'application/json'
-    }
-  })
-    .then(response => response.json())
-    .then(data => {
-      tasks.value.push(data);
-      newTask.value = "";
-      console.log(data);
-    });
+const routes = {
+  '/': Home,
+  '/about': About,
+  '/contact': Contact,
+  '/listadetarefas': Listadetarefas,
 };
 
-const deleteTask = taskId => {
-  fetch(`https://jsonplaceholder.typicode.com/todos/${taskId}`, {
-    method: 'DELETE'
-  })
-    .then(() => {
-      tasks.value = tasks.value.filter(task => task.id !== taskId);
-    });
-};
+const currentPath = ref(window.location.hash)
+
+window.addEventListener('hashchange', () => {
+  currentPath.value = window.location.hash
+})
+
+const currentView = computed(() => {
+  return routes[currentPath.value.slice(1) || '/'] || BrokenLink
+})
 
 </script>
