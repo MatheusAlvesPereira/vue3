@@ -5,9 +5,5 @@
 </template>
 
 <script setup>
-    import { ref } from 'vue'
-
-    const onClick = ref(() => {
-        console.log('click')
-    })
+    
 </script>
