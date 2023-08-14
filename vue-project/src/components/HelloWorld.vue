@@ -10,60 +10,58 @@
           <button @click="deleteTask(task.id)">Deletar</button>
         </li>
       </ul>
-
-      <div v-if="tasks.length === 0">Nenhuma tarefa cadastrada</div>
     </div>
   </div>
 </template>
 
 <script>
+import { ref } from 'vue';
+
 export default {
-  data() {
-    return {
-      newTask: "",
-      tasks: []
-    };
-  },
-  methods: {
-    fetchTasks() {
-      fetch("https://jsonplaceholder.typicode.com/todos")
-        .then(response => response.json())
-        .then(data => {
-          this.tasks = data;
-        });
-    },
-    addTask() {
-      if (this.newTask.trim() === "") return;
-      
-      const newTask = {
+  name: 'TaskList',
+  setup() {
+    const newTask = ref('');
+    const tasks = ref([]);
+
+    const addTask = () => {
+      if (newTask.value.trim() === '') return;
+
+      const taskToAdd = {
         userId: 1,
-        title: this.newTask,
+        title: newTask.value,
         completed: false
       };
-      
-      fetch("https://jsonplaceholder.typicode.com/todos", {
-        method: "POST",
-        body: JSON.stringify(newTask),
+
+      fetch('https://jsonplaceholder.typicode.com/todos', {
+        method: 'POST',
+        body: JSON.stringify(taskToAdd),
         headers: {
-          "Content-Type": "application/json"
+          'Content-Type': 'application/json'
         }
-      }).then(response => response.json())
+      })
+        .then(response => response.json())
         .then(data => {
           this.tasks.push(data);
           this.newTask = "";
-          console.log(data);
+          console.log(data); // Coloque o console.log dentro deste bloco
         });
-    },
-    deleteTask(taskId) {
+    };
+
+    const deleteTask = taskId => {
       fetch(`https://jsonplaceholder.typicode.com/todos/${taskId}`, {
-        method: "DELETE"
-      }).then(() => {
-        this.tasks = this.tasks.filter(task => task.id !== taskId);
-      });
-    }
-  },
-  mounted() {
-    this.fetchTasks();
+        method: 'DELETE'
+      })
+        .then(() => {
+          tasks.value = tasks.value.filter(task => task.id !== taskId);
+        });
+    };
+
+    return {
+      newTask,
+      tasks,
+      addTask,
+      deleteTask
+    };
   }
 };
 </script>
