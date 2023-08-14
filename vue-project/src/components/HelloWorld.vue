@@ -10,6 +10,8 @@
           <button @click="deleteTask(task.id)">Deletar</button>
         </li>
       </ul>
+
+      <div v-if="tasks.length === 0">Nenhuma tarefa cadastrada</div>
     </div>
   </div>
 </template>
@@ -49,7 +51,7 @@ export default {
         .then(data => {
           this.tasks.push(data);
           this.newTask = "";
-          console.log(data); // Coloque o console.log dentro deste bloco
+          console.log(data);
         });
     },
     deleteTask(taskId) {
