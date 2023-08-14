@@ -41,8 +41,8 @@ export default {
       })
         .then(response => response.json())
         .then(data => {
-          this.tasks.push(data);
-          this.newTask = "";
+          tasks.value.push(data);
+          newTask.value = "";
           console.log(data);
         });
     };
