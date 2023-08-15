@@ -1,17 +1,17 @@
 <template>
-    <div id="app">
-        <h1>Lista de Tarefas</h1>
-        <div>
-            <input v-model="newTask" placeholder="Digite uma nova tarefa">
-            <button @click="addTask">Criar Tarefa</button>
-            <ul>
-                <li v-for="task in tasks" :key="task.id">
-                {{ task.title }}
-                <button @click="deleteTask(task.id)">Deletar</button>
-                </li>
-            </ul>
-        </div>
-    </div>
+  <div id="app">
+      <h1>Lista de Tarefas</h1>
+      <div>
+          <input v-model="newTask" placeholder="Digite uma nova tarefa">
+          <button @click="addTask">Criar Tarefa</button>
+          <ul>
+              <li v-for="task in tasks" :key="task.id">
+              {{ task.title }}
+              <button @click="deleteTask(task.id)">Deletar</button>
+              </li>
+          </ul>
+      </div>
+  </div>
 </template>
 
 <script setup>
@@ -56,3 +56,13 @@ const deleteTask = taskId => {
 };
 
 </script>
+
+<style>
+#app {
+  font-family: Avenir, Helvetica, Arial, sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  text-align: center;
+  color: #2c3e50;
+}
+</style>
