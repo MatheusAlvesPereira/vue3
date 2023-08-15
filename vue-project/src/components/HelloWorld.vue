@@ -1,8 +1,8 @@
 <template>
   <div>
-    <a href="#/listadetarefas">lista de tarefas</a> |
-    <a href="#/">Drag and Drop Elements</a> |
-    <a href="#/about">About</a> |
+    <a href="#/">lista de tarefas</a> |
+    <a href="#/listadetarefas">Drag and Drop Elements</a> |
+    <a href="#/calculator">calculator</a> |
     <a href="#/contact">Contact</a> |
     <a href="#/non-existent-path">Broken Link</a>
     <component :is="currentView" />
@@ -19,10 +19,10 @@ import BrokenLink from './BrokenLink.vue';
 import DragAndDropElements from './DragAndDropElements.vue';
 
 const routes = {
-  '/': DragAndDropElements,
-  '/about': About,
+  '/listadetarefas': DragAndDropElements,
+  '/calculator': About,
   '/contact': Contact,
-  '/listadetarefas': Listadetarefas,
+  '/': Listadetarefas,
 };
 
 const currentPath = ref(window.location.hash)
