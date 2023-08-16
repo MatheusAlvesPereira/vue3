@@ -8,23 +8,11 @@ Vue 3 is a fremework
 
 ## 📚 Document
 
+https://vuejs.org/guide/introduction.html
 
 ## Feature
 
 - **Vue3**：The latest Vue3 composition API using Vue3 + script setup
-- **Element Plus**：Vue3 version of Element UI
-- **Pinia**: An alternative to Vuex in Vue3
-- **Vite**：Really fast
-- **Vue Router**：router
-- **TypeScript**：JavaScript With Syntax For Types
-- **PNPM**：Faster, disk space saving package management tool
-- **Scss**：Consistent with Element Plus
-- **CSS variable**：Mainly controls the layout and color of the item
-- **ESlint**：Code verification
-- **Prettier**： Code formatting
-- **Axios**: Promise based HTTP client (encapsulated)
-- **UnoCSS**: Real-time atomized CSS engine with high performance and flexibility
-- **Mobile Compatible**: The layout is compatible with mobile page resolution
 
 
 ## 🚀 Development
@@ -36,7 +24,7 @@ Vue 3 is a fremework
 3. Volar vue
 
 # clone
-git clone https://github.com/un-pany/v3-admin-vite.git
+git clone https://github.com/MatheusAlvesPereira/vue3.git
 
 # enter the project directory
 cd vue-project
