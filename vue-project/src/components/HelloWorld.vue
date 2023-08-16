@@ -4,6 +4,7 @@
     <a href="#/listadetarefas">Drag and Drop Elements</a> |
     <a href="#/contador">Count Button</a> |
     <a href="#/calculator">calculator</a> |
+    <a href="#/urlshorter">urlshorter</a> |
     <a href="#/non-existent-path">Broken Link</a>
     <component :is="currentView" />
   </div>
@@ -12,15 +13,17 @@
 <script setup>
 import { ref , computed } from 'vue';
 
-import About from './About.vue';
+import Calculator from "./Calculator.vue";
 import CountButton from './CountButton.vue';
 import Listadetarefas from './TaskComponent.vue';
 import BrokenLink from './BrokenLink.vue';
 import DragAndDropElements from './DragAndDropElements.vue';
+import UrlShorter from './UrlShorter.vue';
 
 const routes = {
   '/listadetarefas': DragAndDropElements,
-  '/calculator': About,
+  '/urlshorter': UrlShorter,
+  '/calculator': Calculator,
   '/contador': CountButton,
   '/': Listadetarefas,
 };
