@@ -1,9 +1,9 @@
 <template>
   <div>
-    <a href="#/">lista de tarefas</a> |
+    <a href="#/">Todo list</a> |
     <a href="#/listadetarefas">Drag and Drop Elements</a> |
+    <a href="#/contador">Count Button</a> |
     <a href="#/calculator">calculator</a> |
-    <a href="#/contact">Contact</a> |
     <a href="#/non-existent-path">Broken Link</a>
     <component :is="currentView" />
   </div>
@@ -13,7 +13,7 @@
 import { ref , computed } from 'vue';
 
 import About from './About.vue';
-import Contact from './Contact.vue';
+import CountButton from './CountButton.vue';
 import Listadetarefas from './TaskComponent.vue';
 import BrokenLink from './BrokenLink.vue';
 import DragAndDropElements from './DragAndDropElements.vue';
@@ -21,7 +21,7 @@ import DragAndDropElements from './DragAndDropElements.vue';
 const routes = {
   '/listadetarefas': DragAndDropElements,
   '/calculator': About,
-  '/contact': Contact,
+  '/contador': CountButton,
   '/': Listadetarefas,
 };
 
